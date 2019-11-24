@@ -1,5 +1,6 @@
 package com.caiofavoretto.APIFTT.controllers;
 
+import com.caiofavoretto.APIFTT.requests.LoginRequest;
 import com.caiofavoretto.APIFTT.requests.UserRequest;
 import com.caiofavoretto.APIFTT.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,19 +34,19 @@ public class UserController {
         return userService.create(req);
     }
 
-    @PostMapping("/{email}")
-    public ResponseEntity login(@PathVariable("email") String email, @Param("password") String password) {
-        return userService.login(email, password);
+    @PostMapping("/login")
+    public ResponseEntity login(@Valid @RequestBody LoginRequest login) {
+        return userService.login(login.getEmail(), login.getPassword());
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable("id") String id, @Valid @RequestBody UserRequest req) {
-        req.setId(id);
+    @PutMapping
+    public ResponseEntity update(@RequestHeader("userId") String userId, @Valid @RequestBody UserRequest req) {
+        req.setId(userId);
         return userService.update(req);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") String id) {
-        return  userService.delete(id);
+    @DeleteMapping
+    public ResponseEntity delete(@RequestHeader("userId") String userId) {
+        return  userService.delete(userId);
     }
 }

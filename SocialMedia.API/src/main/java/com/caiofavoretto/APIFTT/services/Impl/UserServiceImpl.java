@@ -136,6 +136,6 @@ public class UserServiceImpl implements UserService {
 
         userRepository.deleteById(id);
 
-        return new ResponseEntity<>(new InfoResponse("Usuário deletado."), HttpStatus.OK);
+        return new ResponseEntity<>(new InfoResponse("Usuário excluído."), HttpStatus.OK);
     }
 }

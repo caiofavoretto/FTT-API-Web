@@ -8,6 +8,7 @@ import com.caiofavoretto.APIFTT.requests.PostRequest;
 import com.caiofavoretto.APIFTT.responses.ErrorResponse;
 import com.caiofavoretto.APIFTT.responses.InfoResponse;
 import com.caiofavoretto.APIFTT.responses.PostResponse;
+import com.caiofavoretto.APIFTT.responses.UserResponse;
 import com.caiofavoretto.APIFTT.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,15 +36,25 @@ public class PostServiceImpl implements PostService {
             return new ResponseEntity<>(new ErrorResponse("Nenhum post encontrado"),HttpStatus.NOT_FOUND);
         }
 
-        ArrayList<PostResponse> response = new ArrayList<PostResponse>();
+        ArrayList<PostResponse> response = new ArrayList<>();
 
-        posts.forEach(u -> response.add(PostResponse.builder()
-                .id(u.getId())
-                .userId(u.getUserId())
-                .title(u.getTitle())
-                .description(u.getDescription())
-                .likes(u.getLikes())
-                .build()));
+        posts.forEach(p -> {
+            Optional<User> user = userRepository.findById(p.getUserId());
+
+            user.ifPresent(value -> response.add(PostResponse.builder()
+                    .id(p.getId())
+                    .userId(p.getUserId())
+                    .title(p.getTitle())
+                    .description(p.getDescription())
+                    .likes(p.getLikes())
+                    .user(UserResponse.builder()
+                            .id(value.getId())
+                            .name(value.getName())
+                            .lastName(value.getLastName())
+                            .email(value.getEmail())
+                            .build())
+                    .build()));
+        });
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -62,15 +73,21 @@ public class PostServiceImpl implements PostService {
             return new ResponseEntity<>(new ErrorResponse("Nenhum post publicado"),HttpStatus.NOT_FOUND);
         }
 
-        ArrayList<PostResponse> response = new ArrayList<PostResponse>();
+        ArrayList<PostResponse> response = new ArrayList<>();
 
-        posts.forEach(u -> response.add(PostResponse.builder()
-                .id(u.getId())
-                .userId(u.getUserId())
-                .title(u.getTitle())
-                .description(u.getDescription())
-                .likes(u.getLikes())
-                .build()));
+        posts.forEach(p -> response.add(PostResponse.builder()
+                    .id(p.getId())
+                    .userId(p.getUserId())
+                    .title(p.getTitle())
+                    .description(p.getDescription())
+                    .likes(p.getLikes())
+                    .user(UserResponse.builder()
+                            .id(user.get().getId())
+                            .name(user.get().getName())
+                            .lastName(user.get().getLastName())
+                            .email(user.get().getEmail())
+                            .build())
+                    .build()));
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -83,12 +100,24 @@ public class PostServiceImpl implements PostService {
             return new ResponseEntity<>(new ErrorResponse("Post não encontrado."), HttpStatus.NOT_FOUND);
         }
 
+        Optional<User> user = userRepository.findById(post.get().getUserId());
+
+        if(!user.isPresent()) {
+            return new ResponseEntity<>(new ErrorResponse("Usuário não encontrado"),HttpStatus.NOT_FOUND);
+        }
+
         return new ResponseEntity<>(PostResponse.builder()
                 .id(post.get().getId())
                 .userId(post.get().getUserId())
                 .title(post.get().getTitle())
                 .description(post.get().getDescription())
                 .likes(post.get().getLikes())
+                .user(UserResponse.builder()
+                        .id(user.get().getId())
+                        .name(user.get().getName())
+                        .lastName(user.get().getLastName())
+                        .email(user.get().getEmail())
+                        .build())
                 .build(), HttpStatus.OK);
     }
 
@@ -116,6 +145,12 @@ public class PostServiceImpl implements PostService {
                 .title(newPost.getTitle())
                 .description(newPost.getDescription())
                 .likes(newPost.getLikes())
+                .user(UserResponse.builder()
+                        .id(user.get().getId())
+                        .name(user.get().getName())
+                        .lastName(user.get().getLastName())
+                        .email(user.get().getEmail())
+                        .build())
                 .build(), HttpStatus.OK);
     }
 
@@ -133,6 +168,9 @@ public class PostServiceImpl implements PostService {
             return new ResponseEntity<>(new ErrorResponse("Este usuário não tem permissão para alterar o post."), HttpStatus.FORBIDDEN);
         }
 
+        post.get().setTitle(request.getTitle());
+        post.get().setDescription(request.getDescription());
+
         Post newPost = postRepository.save(post.get());
 
         return new ResponseEntity<>(PostResponse.builder()
@@ -141,6 +179,12 @@ public class PostServiceImpl implements PostService {
                 .title(newPost.getTitle())
                 .description(newPost.getDescription())
                 .likes(newPost.getLikes())
+                .user(UserResponse.builder()
+                        .id(user.get().getId())
+                        .name(user.get().getName())
+                        .lastName(user.get().getLastName())
+                        .email(user.get().getEmail())
+                        .build())
                 .build(), HttpStatus.OK);
     }
 
@@ -154,6 +198,6 @@ public class PostServiceImpl implements PostService {
 
         postRepository.deleteById(id);
 
-        return new ResponseEntity<>(new InfoResponse("Post deletado."), HttpStatus.OK);
+        return new ResponseEntity<>(new InfoResponse("Post excluído."), HttpStatus.OK);
     }
 }

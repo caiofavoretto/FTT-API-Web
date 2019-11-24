@@ -5,18 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PostResponse {
+public class CommentResponse {
     private String id;
     private String userId;
-    private String title;
+    private String postId;
     private String description;
-    private  int likes;
 
     private UserResponse user;
 }

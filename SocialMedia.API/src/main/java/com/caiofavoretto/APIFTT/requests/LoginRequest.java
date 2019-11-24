@@ -7,13 +7,9 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
-public class PostRequest {
-    private  String id;
-    private String userId;
+public class LoginRequest {
     @NotBlank
-    private String title;
+    private String email;
     @NotBlank
-    private String description;
-
-    private int likes;
+    private String password;
 }

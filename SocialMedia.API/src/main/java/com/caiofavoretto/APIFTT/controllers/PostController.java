@@ -1,10 +1,10 @@
 package com.caiofavoretto.APIFTT.controllers;
 
 import com.caiofavoretto.APIFTT.requests.PostRequest;
-import com.caiofavoretto.APIFTT.requests.UserRequest;
+import com.caiofavoretto.APIFTT.responses.ErrorResponse;
+import com.caiofavoretto.APIFTT.responses.PostResponse;
 import com.caiofavoretto.APIFTT.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,13 +23,13 @@ public class PostController {
         return postService.list();
     }
 
-    @GetMapping("/{userId}")
-    public  ResponseEntity listByUser(@PathVariable("userId") String userId) {
+    @GetMapping("/user")
+    public ResponseEntity listByUser(@RequestHeader("userId") String userId) {
         return  postService.getByUser(userId);
     }
 
-    @GetMapping("/{userId}/{id}")
-    public  ResponseEntity get(@PathVariable("id") String id) {
+    @GetMapping("/user/{id}")
+    public ResponseEntity get(@PathVariable("id") String id) {
         return  postService.getById(id);
     }
 
@@ -40,13 +40,24 @@ public class PostController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable("id") String id, @Valid @RequestBody PostRequest req) {
+    public ResponseEntity update(@PathVariable("id") String id, @Valid @RequestBody PostRequest req, @RequestHeader String userId) {
         req.setId(id);
+        req.setUserId(userId);
         return postService.update(req);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") String id) {
-        return  postService.delete(id);
+    public ResponseEntity delete(@PathVariable("id") String id, @RequestHeader("userId") String userId) {
+        ResponseEntity response = postService.getById(id);
+
+        if(!(response.getBody() instanceof PostResponse)) {
+            return response;
+        }
+
+        if(!((PostResponse)response.getBody()).getUserId().equals(userId)) {
+            return new ResponseEntity<>(new ErrorResponse("Este usuário não tem permissão para excluir o post."), HttpStatus.FORBIDDEN);
+        }
+
+        return postService.delete(id);
     }
 }
