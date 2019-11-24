@@ -9,9 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserResponse {
+public class PostResponse {
     private String id;
-    private String name;
-    private String lastName;
-    private String email;
+    private String userId;
+    private String title;
+    private String description;
+    private  int likes;
 }

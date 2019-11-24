@@ -1,7 +1,6 @@
 package com.caiofavoretto.APIFTT.services;
 
 import com.caiofavoretto.APIFTT.requests.UserRequest;
-import com.caiofavoretto.APIFTT.responses.UserResponse;
 import org.springframework.http.ResponseEntity;
 
 public interface UserService {

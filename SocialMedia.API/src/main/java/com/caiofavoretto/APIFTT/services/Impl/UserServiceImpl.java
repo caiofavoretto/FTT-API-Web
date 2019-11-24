@@ -128,6 +128,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity delete(String id) {
+        Optional<User> user = userRepository.findById(id);
+
+        if(!user.isPresent()) {
+            return new ResponseEntity<>(new ErrorResponse("Usuário não encontrado."), HttpStatus.NOT_FOUND);
+        }
+
         userRepository.deleteById(id);
 
         return new ResponseEntity<>(new InfoResponse("Usuário deletado."), HttpStatus.OK);
