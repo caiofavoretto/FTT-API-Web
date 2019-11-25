@@ -16,7 +16,8 @@ public class PostResponse {
     private String userId;
     private String title;
     private String description;
-    private  int likes;
+    private int likes;
+    private int comments;
 
     private UserResponse user;
 }

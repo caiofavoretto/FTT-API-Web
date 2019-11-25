@@ -1,0 +1,67 @@
+<!-- Caio William Favoretto  RA: 082170041 -->
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Elvs</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../global.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <main>
+      <div class="content">
+        <button
+          onclick="window.location = '/login'"
+          class="btn-back"
+          type="button"
+        >
+          <img src="../assets/Back.svg" alt="BackButton" />
+        </button>
+
+        <img src="../assets/Logo.svg" alt="Logotipo" />
+
+        <form onsubmit="handleCreateAccount(event)">
+          <input type="text" name="name" id="name" placeholder="Nome" />
+
+          <input
+            type="text"
+            name="lastname"
+            id="lastname"
+            placeholder="Sobrenome"
+          />
+
+          <input type="email" name="email" id="email" placeholder="E-mail" />
+
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Senha"
+          />
+
+          <input
+            type="password"
+            name="password"
+            id="confirm-password"
+            placeholder="Confirmar senha"
+          />
+
+          <button type="submit">CRIAR CONTA</button>
+        </form>
+      </div>
+      <div class="background"></div>
+    </main>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../App.js"></script>
+  </body>
+</html>

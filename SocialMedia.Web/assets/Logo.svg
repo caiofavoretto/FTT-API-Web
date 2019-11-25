@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="104.004" height="183.674" viewBox="0 0 104.004 183.674">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: #ff6f00;
+        font-size: 36px;
+        font-family: UrbaneRounded-Medium, Urbane Rounded;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fa0"/>
+      <stop offset="1" stop-color="#ff6f00"/>
+    </linearGradient>
+  </defs>
+  <g id="Grupo_4" data-name="Grupo 4" transform="translate(-265.797 -179.326)">
+    <path id="União_1" data-name="União 1" class="cls-1" d="M75.646,149.94a51.559,51.559,0,0,1-26.839-14.424,52.508,52.508,0,0,1-14.832-30.64,53.23,53.23,0,0,1,.613-16.838,52.521,52.521,0,0,1,5.964-15.972h0A52.617,52.617,0,0,0,48.921,83.1c.165.166.332.333.5.5a53.642,53.642,0,0,1-2-6.057A52.885,52.885,0,0,1,61.336,26.335a51.5,51.5,0,0,1,15.21-10.406A52.917,52.917,0,0,0,65.6,63.945,52.3,52.3,0,0,0,85.779,93.189a52.3,52.3,0,0,0,20.174-29.244,52.919,52.919,0,0,0-10.94-48.016,51.509,51.509,0,0,1,15.21,10.406,52.85,52.85,0,0,1,13.912,51.205,53.678,53.678,0,0,1-1.884,5.772l.21-.211a52.6,52.6,0,0,0,8.254-10.837A52.512,52.512,0,0,1,136.6,88.2a53.159,53.159,0,0,1-4.184,33.02,52.433,52.433,0,0,1-10.069,14.293,51.659,51.659,0,0,1-46.7,14.424Z" transform="translate(232.221 163.397)"/>
+    <text id="elvs" class="cls-2" transform="translate(318 356)"><tspan x="-38.646" y="0">elvs</tspan></text>
+  </g>
+</svg>

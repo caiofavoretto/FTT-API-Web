@@ -1,13 +1,10 @@
 package com.caiofavoretto.APIFTT.controllers;
 
 import com.caiofavoretto.APIFTT.requests.CommentRequest;
-import com.caiofavoretto.APIFTT.requests.UserRequest;
 import com.caiofavoretto.APIFTT.responses.CommentResponse;
 import com.caiofavoretto.APIFTT.responses.ErrorResponse;
-import com.caiofavoretto.APIFTT.responses.UserResponse;
 import com.caiofavoretto.APIFTT.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/comments")
 public class CommentController {
 

@@ -14,6 +14,4 @@ public class PostRequest {
     private String title;
     @NotBlank
     private String description;
-
-    private int likes;
 }

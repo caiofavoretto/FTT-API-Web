@@ -1,0 +1,139 @@
+main .content {
+  position: absolute;
+
+  width: 45%;
+  min-width: 320px;
+
+  background: #fff;
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  left: 50%;
+  top: 64px;
+  transform: translateX(-50%);
+  padding: 64px;
+
+  -webkit-box-shadow: 10px 0px 10px 2px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 10px 0px 10px 2px rgba(0, 0, 0, 0.16);
+  box-shadow: 10px 0px 10px 2px rgba(0, 0, 0, 0.16);
+}
+
+.btn-back {
+  position: absolute;
+  left: 32px;
+  top: 32px;
+}
+
+main .content img {
+  width: 64;
+  margin-bottom: 64px;
+}
+
+main .content form {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main .content form input {
+  border: none;
+  border-bottom: 1px solid #757575;
+
+  color: #757575;
+  text-align: center;
+  padding: 8px;
+
+  display: block;
+  width: 100%;
+  max-width: 450px;
+
+  margin-bottom: 64px;
+}
+
+main .content form button {
+  border: none;
+  border-radius: 60px;
+
+  width: 100%;
+  max-width: 450px;
+  padding: 16px;
+  margin-bottom: 64px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  color: #fff;
+  font-weight: 500;
+
+  background: rgb(255, 170, 0); /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    rgba(255, 170, 0, 1) 0%,
+    rgba(255, 111, 0, 1) 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    left,
+    rgba(255, 170, 0, 1) 0%,
+    rgba(255, 111, 0, 1) 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to right,
+    rgba(255, 170, 0, 1) 0%,
+    rgba(255, 111, 0, 1) 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+main .content form button:hover {
+  opacity: 0.8;
+}
+
+.link {
+  width: 100%;
+  max-width: 450px;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+main .background {
+  height: 100vh;
+  width: 100%;
+
+  position: fixed;
+  z-index: -1;
+
+  background: -moz-linear-gradient(
+      bottom,
+      rgba(255, 170, 0, 0.2) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    url('../assets/Background.png'); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+      bottom,
+      rgba(255, 170, 0, 0.2) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    url('../assets/Background.png'); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+      to top,
+      rgba(255, 170, 0, 0.2) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    url('../assets/Background.png'); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

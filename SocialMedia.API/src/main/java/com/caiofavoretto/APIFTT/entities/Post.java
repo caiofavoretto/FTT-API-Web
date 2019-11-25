@@ -21,4 +21,5 @@ public class Post {
     private String title;
     private String description;
     private int likes;
+    private int comments;
 }
