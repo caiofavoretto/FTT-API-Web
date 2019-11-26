@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16.914" height="16.914" viewBox="0 0 16.914 16.914">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-4 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #ff6f00;
+        stroke-width: 2px;
+      }
+
+      .cls-1 {
+        stroke-linecap: round;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Icon" transform="translate(-1351 -63)">
+    <line id="Linha_7" data-name="Linha 7" class="cls-1" x2="3" y2="3" transform="translate(1363.5 75.5)"/>
+    <g id="Elipse_8" data-name="Elipse 8" class="cls-2" transform="translate(1351 63)">
+      <circle class="cls-3" cx="7.5" cy="7.5" r="7.5"/>
+      <circle class="cls-4" cx="7.5" cy="7.5" r="6.5"/>
+    </g>
+  </g>
+</svg>

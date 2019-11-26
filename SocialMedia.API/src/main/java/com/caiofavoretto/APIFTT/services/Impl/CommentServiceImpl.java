@@ -109,6 +109,9 @@ public class CommentServiceImpl implements CommentService {
             return new ResponseEntity<>(new ErrorResponse("Post não encontrado."), HttpStatus.FORBIDDEN);
         }
 
+        post.get().setComments(post.get().getComments() + 1);
+        postRepository.save(post.get());
+
         Comment newComment = commentRepository.save(
                 Comment.builder()
                         .userId(request.getUserId())
@@ -144,6 +147,15 @@ public class CommentServiceImpl implements CommentService {
         if(!user.isPresent() || !user.get().getId().equals(request.getUserId())) {
             return new ResponseEntity<>(new ErrorResponse("Este usuário não tem permissão para alterar o comentário."), HttpStatus.FORBIDDEN);
         }
+
+        Optional<Post> post = postRepository.findById(request.getPostId());
+
+        if(!post.isPresent()) {
+            return new ResponseEntity<>(new ErrorResponse("Post não está mais disponível."), HttpStatus.NOT_FOUND);
+        }
+
+        post.get().setComments(post.get().getComments() - 1);
+        postRepository.save(post.get());
 
         comment.get().setDescription(request.getDescription());
 

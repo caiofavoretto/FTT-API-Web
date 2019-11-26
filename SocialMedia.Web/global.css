@@ -40,6 +40,8 @@ hr {
   border: none;
 }
 
+/* COMPONENTS */
+
 .link a {
   display: block;
   text-align: right;
@@ -55,4 +57,148 @@ hr {
 .btn-back {
   border: none;
   background: none;
+}
+
+button.btn-action {
+  border: none;
+  border-radius: 60px;
+
+  width: 100%;
+  max-width: 450px;
+  padding: 16px;
+  margin-bottom: 64px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  color: #fff;
+  font-weight: 500;
+
+  background: rgb(255, 170, 0); /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    rgba(255, 170, 0, 1) 0%,
+    rgba(255, 111, 0, 1) 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    left,
+    rgba(255, 170, 0, 1) 0%,
+    rgba(255, 111, 0, 1) 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to right,
+    rgba(255, 170, 0, 1) 0%,
+    rgba(255, 111, 0, 1) 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+button.btn-action:hover {
+  opacity: 0.8;
+}
+
+div.profile {
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.btn-outline {
+  border: 2px solid #ff6f00;
+  color: #ff6f00;
+  height: 28px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 8px;
+  border-radius: 28px;
+
+  transition: all ease-out 0.25s;
+}
+
+button.btn-outline:hover {
+  color: #fff;
+  background: #ff6f00;
+}
+
+div.btn-labeled {
+  display: flex;
+  align-items: center;
+}
+
+div.btn-labeled button {
+  background: none;
+  border: none;
+}
+
+div.btn-labeled strong {
+  font-weight: 400;
+  font-size: 16px;
+  color: #757575;
+  margin-left: 16px;
+  transform: translateY(-2px);
+}
+
+/* ICONS */
+/* home */
+li.nav-item .home-icon .cls-1 {
+  fill: transparent;
+  transition: all 0.2s ease-out;
+}
+li.nav-item.active .home-icon .cls-1 {
+  fill: #ff6f00;
+}
+
+li.nav-item .home-icon .cls-2,
+li.nav-item .home-icon .cls-3 {
+  stroke: none;
+}
+
+li.nav-item .home-icon .cls-3 {
+  fill: #ff6f00;
+  transition: all 0.2s ease-out;
+}
+li.nav-item.active .home-icon .cls-3 {
+  fill: transparent;
+}
+
+/* like */
+div.btn-labeled .like-icon .cls-1 {
+  fill: transparent;
+  stroke: #757575;
+  stroke-width: 2px;
+  transition: all 0.2s ease-out;
+}
+div.btn-labeled.active .like-icon .cls-1 {
+  fill: #ff6f00;
+  stroke: transparent;
+}
+
+/* comment */
+div.btn-labeled .comment-icon .cls-1 {
+  fill: transparent;
+  transition: all 0.2s ease-out;
+}
+div.btn-labeled.active .comment-icon .cls-1 {
+  fill: #ffaa00;
+}
+
+div.btn-labeled .comment-icon .cls-2,
+div.btn-labeled .comment-icon .cls-3 {
+  stroke: none;
+}
+
+div.btn-labeled .comment-icon .cls-3 {
+  fill: #757575;
+  transition: all 0.2s ease-out;
+}
+div.btn-labeled.active .comment-icon .cls-3 {
+  fill: transparent;
 }

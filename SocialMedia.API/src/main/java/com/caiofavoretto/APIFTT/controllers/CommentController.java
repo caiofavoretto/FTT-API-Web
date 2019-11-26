@@ -24,9 +24,11 @@ public class CommentController {
         return commentService.listByPost(postId);
     }
 
-    @PostMapping
+    @PostMapping("/{postId}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public ResponseEntity store(@Valid @RequestBody CommentRequest req) {
+    public ResponseEntity store(@Valid @RequestBody CommentRequest req, @PathVariable("postId") String postId, @RequestHeader("userId") String userId) {
+        req.setUserId(userId);
+        req.setPostId(postId);
         return commentService.create(req);
     }
 

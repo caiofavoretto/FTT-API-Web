@@ -10,7 +10,6 @@ import javax.validation.constraints.NotBlank;
 public class PostRequest {
     private  String id;
     private String userId;
-    @NotBlank
     private String title;
     @NotBlank
     private String description;
