@@ -187,6 +187,15 @@ public class CommentServiceImpl implements CommentService {
             return new ResponseEntity<>(new ErrorResponse("Comentário não encontrado."), HttpStatus.NOT_FOUND);
         }
 
+        Optional<Post> post = postRepository.findById(comment.get().getPostId());
+
+        if(!post.isPresent()) {
+            return new ResponseEntity<>(new ErrorResponse("Post não encontrado."), HttpStatus.NOT_FOUND);
+        }
+
+        post.get().setComments(post.get().getComments() - 1);
+        postRepository.save(post.get());
+
         commentRepository.deleteById(id);
 
         return new ResponseEntity<>(new InfoResponse("Comentário excluído."), HttpStatus.OK);

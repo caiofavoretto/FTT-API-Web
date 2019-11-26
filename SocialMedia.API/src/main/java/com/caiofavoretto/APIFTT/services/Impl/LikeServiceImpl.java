@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class LikeServiceImpl implements LikeService {
@@ -67,23 +68,31 @@ public class LikeServiceImpl implements LikeService {
     }
 
     @Override
-    public ResponseEntity getById(String id) {
-        Optional<Like> like = likeRepository.findById(id);
+    public ResponseEntity getById(String postId, String userId) {
+        List<Like> likes = likeRepository.findByPostId(postId);
 
-        if(!like.isPresent()) {
+        if(likes.size() < 1) {
             return new ResponseEntity<>(new ErrorResponse("Like não contabilizdo."), HttpStatus.NOT_FOUND);
         }
 
-        Optional<User> user = userRepository.findById(like.get().getUserId());
+        Optional<User> user = userRepository.findById(userId);
 
         if(!user.isPresent()) {
             return new ResponseEntity<>(new ErrorResponse("Usuário não encontrado."), HttpStatus.FORBIDDEN);
         }
 
+        AtomicReference<Like> likeData = new AtomicReference<>(new Like());
+
+        likes.forEach(like -> {
+            if(like.getUserId().equals(userId)) {
+                likeData.set(like);
+            }
+        });
+
         return new ResponseEntity<>(LikeResponse.builder()
-                .id(like.get().getId())
-                .userId(like.get().getUserId())
-                .postId(like.get().getPostId())
+                .id(likeData.get().getId())
+                .userId(likeData.get().getUserId())
+                .postId(likeData.get().getPostId())
                 .user(UserResponse.builder()
                         .id(user.get().getId())
                         .name(user.get().getName())
@@ -155,6 +164,15 @@ public class LikeServiceImpl implements LikeService {
         if(!like.isPresent()) {
             return new ResponseEntity<>(new ErrorResponse("Like não contabilizado."), HttpStatus.NOT_FOUND);
         }
+
+        Optional<Post> post = postRepository.findById(like.get().getPostId());
+
+        if(!post.isPresent()) {
+            return new ResponseEntity<>(new ErrorResponse("Post não encontrado."), HttpStatus.NOT_FOUND);
+        }
+
+        post.get().setLikes(post.get().getLikes() - 1);
+        postRepository.save(post.get());
 
         likeRepository.deleteById(id);
 

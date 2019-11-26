@@ -20,4 +20,5 @@ public class PostResponse {
     private int comments;
 
     private UserResponse user;
+    private Boolean liked;
 }

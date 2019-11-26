@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 public interface LikeService {
     public ResponseEntity listByPost(String postId);
 
-    public ResponseEntity getById(String id);
+    public ResponseEntity getById(String postId, String userId);
 
     public ResponseEntity create(LikeRequest request);
 

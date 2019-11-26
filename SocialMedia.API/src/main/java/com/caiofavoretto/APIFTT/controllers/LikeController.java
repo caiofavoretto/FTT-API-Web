@@ -38,18 +38,18 @@ public class LikeController {
         return likeService.create(req);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") String id, @RequestHeader("userId") String userId) {
-        ResponseEntity response = likeService.getById(id);
+    @DeleteMapping("/{postId}")
+    public ResponseEntity delete(@PathVariable("postId") String postId, @RequestHeader("userId") String userId) {
+        ResponseEntity response = likeService.getById(postId, userId);
 
         if(!(response.getBody() instanceof LikeResponse)) {
             return response;
         }
 
-        if(!((CommentResponse)response.getBody()).getUserId().equals(userId)) {
+        if(!((LikeResponse)response.getBody()).getUserId().equals(userId)) {
             return new ResponseEntity<>(new ErrorResponse("Este usuário não tem permissão para remover o like."), HttpStatus.FORBIDDEN);
         }
 
-        return likeService.delete(id);
+        return likeService.delete(((LikeResponse)response.getBody()).getId());
     }
 }

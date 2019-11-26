@@ -1,7 +1,9 @@
 package com.caiofavoretto.APIFTT.services.Impl;
 
+import com.caiofavoretto.APIFTT.entities.Like;
 import com.caiofavoretto.APIFTT.entities.Post;
 import com.caiofavoretto.APIFTT.entities.User;
+import com.caiofavoretto.APIFTT.repositories.LikeRepository;
 import com.caiofavoretto.APIFTT.repositories.PostRepository;
 import com.caiofavoretto.APIFTT.repositories.UserRepository;
 import com.caiofavoretto.APIFTT.requests.PostRequest;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -28,8 +31,11 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private LikeRepository likeRepository;
+
     @Override
-    public ResponseEntity list() {
+    public ResponseEntity list(String userId) {
         List<Post> posts = postRepository.findAll();
 
         if(posts.size() == 0) {
@@ -41,6 +47,15 @@ public class PostServiceImpl implements PostService {
         posts.forEach(p -> {
             Optional<User> user = userRepository.findById(p.getUserId());
 
+            List<Like> likes = likeRepository.findByPostId(p.getId());
+
+            AtomicReference<Boolean> liked = new AtomicReference<>(false);
+            likes.forEach(like -> {
+                if(like.getUserId().equals(userId)){
+                    liked.set(true);
+                }
+            });
+
             user.ifPresent(value -> response.add(PostResponse.builder()
                     .id(p.getId())
                     .userId(p.getUserId())
@@ -48,6 +63,7 @@ public class PostServiceImpl implements PostService {
                     .description(p.getDescription())
                     .likes(p.getLikes())
                     .comments(p.getComments())
+                    .liked(liked.get())
                     .user(UserResponse.builder()
                             .id(value.getId())
                             .name(value.getName())
@@ -97,7 +113,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public ResponseEntity getById(String id) {
+    public ResponseEntity getById(String id, String userId) {
         Optional<Post> post = postRepository.findById(id);
 
         if(!post.isPresent()) {
@@ -110,6 +126,15 @@ public class PostServiceImpl implements PostService {
             return new ResponseEntity<>(new ErrorResponse("Usuário não encontrado"),HttpStatus.NOT_FOUND);
         }
 
+        List<Like> likes = likeRepository.findByPostId(post.get().getId());
+
+        AtomicReference<Boolean> liked = new AtomicReference<>(false);
+        likes.forEach(like -> {
+            if(like.getUserId().equals(userId)){
+                liked.set(true);
+            }
+        });
+
         return new ResponseEntity<>(PostResponse.builder()
                 .id(post.get().getId())
                 .userId(post.get().getUserId())
@@ -117,6 +142,7 @@ public class PostServiceImpl implements PostService {
                 .description(post.get().getDescription())
                 .likes(post.get().getLikes())
                 .comments((post.get().getComments()))
+                .liked(liked.get())
                 .user(UserResponse.builder()
                         .id(user.get().getId())
                         .name(user.get().getName())

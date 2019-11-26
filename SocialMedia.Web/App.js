@@ -84,12 +84,17 @@ function generateProfile() {
 // FEED
 async function loadFeed(elementId) {
   try {
-    const response = await axios.get(`${apiURL}/posts`);
+    const loggedUser = JSON.parse(localStorage.getItem('user'));
+
+    const response = await axios.get(`${apiURL}/posts`, {
+      headers: {
+        userId: loggedUser.id,
+      },
+    });
     const parent = document.getElementById(elementId);
 
     generateProfile();
 
-    const loggedUser = JSON.parse(localStorage.getItem('user'));
     const profilePost = document.getElementById('profile-post');
 
     profilePost.style.background = `#${loggedUser.colorHex}`;
@@ -122,8 +127,10 @@ async function loadFeed(elementId) {
 
             <!-- Actions -->
             <div class="actions">
-              <div class="btn-labeled">
-                <button onclick="like('${post.id}')">
+              <div class="btn-labeled ${post.liked ? 'active' : ''}">
+                <button onclick="${
+                  post.liked ? `unlike('${post.id}')` : `like('${post.id}')`
+                }">
                   <svg
                     class="like-icon icon"
                     xmlns="http://www.w3.org/2000/svg"
@@ -238,13 +245,18 @@ async function loadPostComments(postElementId, commentsElementId) {
 
   try {
     const [postData, commentsData] = await Promise.all([
-      axios.get(`${apiURL}/posts/user/${postId}`),
+      axios.get(`${apiURL}/posts/user/${postId}`, {
+        headers: {
+          userId: loggedUser.id,
+        },
+      }),
       axios.get(`${apiURL}/comments/${postId}`),
     ]);
 
     const postParent = document.getElementById(postElementId);
     const commentsParent = document.getElementById(commentsElementId);
 
+    debugger;
     const htmlPost = /*html*/ `
       <section id="post-${postData.data.id}" class="post">
         <div class="post-author">
@@ -267,7 +279,7 @@ async function loadPostComments(postElementId, commentsElementId) {
 
         <!-- Actions -->
         <div class="actions">
-          <div class="btn-labeled">
+          <div class="btn-labeled ${postData.data.liked ? 'active' : ''}">
             <button onclick="like('${postId}')">
               <svg
                 class="like-icon icon"
@@ -359,7 +371,11 @@ async function openCommentOverlay(postId) {
 
   try {
     debugger;
-    const postData = await axios.get(`${apiURL}/posts/user/${postId}`);
+    const postData = await axios.get(`${apiURL}/posts/user/${postId}`, {
+      headers: {
+        userId: loggedUser.id,
+      },
+    });
 
     if (loggedUser) {
       overlay.classList.remove('hidden');
@@ -485,6 +501,30 @@ async function like(postId) {
         },
       },
     );
+
+    if (window.location.pathname.includes('home')) {
+      window.location = `/home`;
+    } else {
+      window.location = `/posts/?postId=${postId}`;
+    }
+  } catch (error) {
+    alert(error.response.data.error);
+  }
+}
+
+async function unlike(postId) {
+  if (!e) var e = window.event;
+  e.cancelBubble = true;
+  if (e.stopPropagation) e.stopPropagation();
+
+  const userId = JSON.parse(localStorage.getItem('user')).id;
+
+  try {
+    const response = await axios.delete(`${apiURL}/likes/${postId}`, {
+      headers: {
+        userId,
+      },
+    });
 
     if (window.location.pathname.includes('home')) {
       window.location = `/home`;

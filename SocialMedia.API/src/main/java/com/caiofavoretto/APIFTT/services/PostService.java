@@ -4,11 +4,11 @@ import com.caiofavoretto.APIFTT.requests.PostRequest;
 import org.springframework.http.ResponseEntity;
 
 public interface PostService {
-    public ResponseEntity list();
+    public ResponseEntity list(String userId);
 
     public ResponseEntity getByUser(String userId);
 
-    public ResponseEntity getById(String id);
+    public ResponseEntity getById(String id, String userId);
 
     public ResponseEntity create(PostRequest request);
 

@@ -20,8 +20,8 @@ public class PostController {
     private PostService postService;
 
     @GetMapping
-    public ResponseEntity index() {
-        return postService.list();
+    public ResponseEntity index(@RequestHeader String userId) {
+        return postService.list(userId);
     }
 
     @GetMapping("/user")
@@ -30,8 +30,8 @@ public class PostController {
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity get(@PathVariable("id") String id) {
-        return postService.getById(id);
+    public ResponseEntity get(@PathVariable("id") String id, @RequestHeader("userId") String userId) {
+        return postService.getById(id, userId);
     }
 
     @PostMapping
@@ -50,7 +50,7 @@ public class PostController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable("id") String id, @RequestHeader("userId") String userId) {
-        ResponseEntity response = postService.getById(id);
+        ResponseEntity response = postService.getById(id, userId);
 
         if(!(response.getBody() instanceof PostResponse)) {
             return response;
