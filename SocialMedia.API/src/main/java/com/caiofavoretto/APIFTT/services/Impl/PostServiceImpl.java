@@ -53,6 +53,7 @@ public class PostServiceImpl implements PostService {
                             .name(value.getName())
                             .lastName(value.getLastName())
                             .email(value.getEmail())
+                            .colorHex(value.getColorHex())
                             .build())
                     .build()));
         });
@@ -88,6 +89,7 @@ public class PostServiceImpl implements PostService {
                             .name(user.get().getName())
                             .lastName(user.get().getLastName())
                             .email(user.get().getEmail())
+                            .colorHex(user.get().getColorHex())
                             .build())
                     .build()));
 
@@ -120,6 +122,7 @@ public class PostServiceImpl implements PostService {
                         .name(user.get().getName())
                         .lastName(user.get().getLastName())
                         .email(user.get().getEmail())
+                        .colorHex(user.get().getColorHex())
                         .build())
                 .build(), HttpStatus.OK);
     }
@@ -153,6 +156,7 @@ public class PostServiceImpl implements PostService {
                         .name(user.get().getName())
                         .lastName(user.get().getLastName())
                         .email(user.get().getEmail())
+                        .colorHex(user.get().getColorHex())
                         .build())
                 .build(), HttpStatus.OK);
     }
@@ -188,6 +192,7 @@ public class PostServiceImpl implements PostService {
                         .name(user.get().getName())
                         .lastName(user.get().getLastName())
                         .email(user.get().getEmail())
+                        .colorHex(user.get().getColorHex())
                         .build())
                 .build(), HttpStatus.OK);
     }

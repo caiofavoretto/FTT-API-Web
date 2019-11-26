@@ -138,39 +138,21 @@
 
       <main>
         <div class="title">
-          <h1>Pagina inicial</h1>
-          <img src="../assets/star.svg" alt="Estrela" />
-        </div>
-        <div class="post-input">
-          <div class="post-text">
-            <div id="profile-post" class="profile"></div>
-            <textarea
-              id="post-textarea"
-              placeholder="Compartilhe algo com o mundo..."
-              oninput="onPostContentChange(event)"
-            ></textarea>
-          </div>
-          <div class="actions">
-            <button onclick="enableTitle(this)" class="btn-outline">
-              Título
-            </button>
-            <input
-              class="hidden"
-              placeholder="Título do post"
-              type="text"
-              id="post-title-input"
-            />
+          <div class="title-container">
             <button
-              onclick="post()"
-              id="post-content-btn"
-              disabled
-              class="btn-action"
+              onclick="window.location = '/home'"
+              class="btn-back"
+              type="button"
             >
-              POST
+              <img width="28" src="../assets/Back.svg" alt="BackButton" />
             </button>
+            <h1>Post</h1>
           </div>
         </div>
+
         <article id="post-container" class="post-container"></article>
+
+        <article id="comments-container" class="comments-container"></article>
       </main>
 
       <aside>

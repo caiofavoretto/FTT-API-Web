@@ -1,105 +1,3 @@
-body {
-  background: #eee;
-}
-
-div.container {
-  display: flex;
-  width: 100%;
-  max-width: 1300px;
-  margin: 0 auto;
-}
-
-nav {
-  display: flex;
-  flex: 1.4;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-nav div.logo {
-  height: 72px;
-
-  display: flex;
-  align-items: center;
-
-  padding: 16px;
-}
-
-nav ul.buttons {
-  margin-top: 32px;
-  padding: 16px;
-  list-style: none;
-  font-size: 16px;
-}
-
-nav ul.buttons li.nav-item + li.nav-item {
-  margin-top: 32px;
-}
-
-nav ul.buttons li.nav-item a {
-  display: flex;
-  align-items: center;
-  text-align: right;
-  text-decoration: none;
-  color: #757575;
-}
-
-nav ul.buttons li.nav-item.active a {
-  color: #ff6f00;
-  font-weight: 500;
-}
-
-nav ul.buttons li.nav-item a:hover {
-  opacity: 0.8;
-}
-
-nav ul.buttons li.nav-item a .icon {
-  margin-right: 16px;
-}
-
-nav ul.buttons li.nav-item a div.profile {
-  font-size: 14px;
-  width: 28px;
-  height: 28px;
-}
-
-nav ul.buttons button {
-  margin-top: 32px;
-  height: 32px;
-  width: 100%;
-
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* MAIN */
-main {
-  display: flex;
-  flex: 3;
-  flex-direction: column;
-  align-items: center;
-}
-
-main .title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 0 16px;
-
-  height: 72px;
-
-  background: #fff;
-  color: #ff6f00;
-}
-
-main .title h1 {
-  font-size: 24px;
-  font-weight: 500;
-}
-
 main .post-input {
   display: flex;
   flex-direction: column;
@@ -143,11 +41,24 @@ main .post-input div.actions {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  position: relative;
 }
 
 main .post-input div.actions button {
   margin: 0;
   margin-top: 32px;
+}
+
+main .post-input div.actions input {
+  position: absolute;
+  border: 2px solid #757575;
+  height: 32px;
+  border-radius: 32px;
+  top: 30px;
+
+  padding: 0 16px;
+
+  margin-left: calc(48px + 16px + 64px);
 }
 
 main .post-input div.actions button.btn-action {
@@ -176,6 +87,8 @@ main .post-container section.post {
   padding: 16px;
   margin-top: 8px;
   background: #fff;
+
+  cursor: pointer;
 }
 
 main .post-container section.post div.post-content {
@@ -229,55 +142,4 @@ main
   div.btn-labeled
   + div.btn-labeled {
   margin-left: 64px;
-}
-
-/* ASIDE */
-aside {
-  display: flex;
-  flex: 2;
-  flex-direction: column;
-  align-items: center;
-
-  padding: 0 32px;
-}
-
-aside .input-search {
-  height: 72px;
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-
-  position: relative;
-}
-
-aside .input-search input {
-  height: 32px;
-  border: none;
-  background: #fff;
-  border-radius: 32px;
-  width: 100%;
-
-  padding: 8px 16px 8px 48px;
-}
-
-aside .input-search::after {
-  content: '';
-  width: 16px;
-  height: 16px;
-  background: url('../assets/search.svg');
-  position: absolute;
-  left: 16px;
-}
-
-aside .input-search input::placeholder {
-  color: #ff6f00;
-}
-
-aside .suggestions {
-  width: 100%;
-  height: 300px;
-  background: #fff;
-
-  border-radius: 8px;
 }

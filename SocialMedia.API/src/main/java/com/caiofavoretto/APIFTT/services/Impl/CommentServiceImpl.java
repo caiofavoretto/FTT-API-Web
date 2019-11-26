@@ -41,7 +41,7 @@ public class CommentServiceImpl implements CommentService {
         List<Comment> comments = commentRepository.findByPostId(postId);
 
         if(comments.size() == 0) {
-            return new ResponseEntity<>(new ErrorResponse("Nenhum commentário disponível"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new InfoResponse("Nenhum commentário disponível"), HttpStatus.OK);
         }
 
         ArrayList<CommentResponse> response = new ArrayList<>();
@@ -59,6 +59,7 @@ public class CommentServiceImpl implements CommentService {
                             .name(value.getName())
                             .lastName(value.getLastName())
                             .email(value.getEmail())
+                            .colorHex(value.getColorHex())
                             .build())
                     .build()));
         });
@@ -90,6 +91,7 @@ public class CommentServiceImpl implements CommentService {
                         .name(user.get().getName())
                         .lastName(user.get().getLastName())
                         .email(user.get().getEmail())
+                        .colorHex(user.get().getColorHex())
                         .build())
                 .build(), HttpStatus.OK);
     }
@@ -130,6 +132,7 @@ public class CommentServiceImpl implements CommentService {
                         .name(user.get().getName())
                         .lastName(user.get().getLastName())
                         .email(user.get().getEmail())
+                        .colorHex(user.get().getColorHex())
                         .build())
                 .build(), HttpStatus.OK);
     }
@@ -171,6 +174,7 @@ public class CommentServiceImpl implements CommentService {
                         .name(user.get().getName())
                         .lastName(user.get().getLastName())
                         .email(user.get().getEmail())
+                        .colorHex(user.get().getColorHex())
                         .build())
                 .build(), HttpStatus.OK);
     }

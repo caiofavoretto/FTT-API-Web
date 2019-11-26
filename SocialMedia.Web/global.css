@@ -40,6 +40,10 @@ hr {
   border: none;
 }
 
+.hidden {
+  display: none;
+}
+
 /* COMPONENTS */
 
 .link a {
@@ -100,6 +104,11 @@ button.btn-action:hover {
   opacity: 0.8;
 }
 
+button.btn-action:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
 div.profile {
   color: #fff;
   border-radius: 50%;
@@ -124,6 +133,11 @@ button.btn-outline {
 }
 
 button.btn-outline:hover {
+  color: #fff;
+  background: #ff6f00;
+}
+
+button.btn-outline.active {
   color: #fff;
   background: #ff6f00;
 }

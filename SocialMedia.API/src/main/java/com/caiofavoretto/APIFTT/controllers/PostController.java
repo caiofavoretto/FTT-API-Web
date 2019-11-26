@@ -31,12 +31,13 @@ public class PostController {
 
     @GetMapping("/user/{id}")
     public ResponseEntity get(@PathVariable("id") String id) {
-        return  postService.getById(id);
+        return postService.getById(id);
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public ResponseEntity store(@Valid @RequestBody PostRequest req) {
+    public ResponseEntity store(@Valid @RequestBody PostRequest req, @RequestHeader String userId) {
+        req.setUserId(userId);
         return postService.create(req);
     }
 

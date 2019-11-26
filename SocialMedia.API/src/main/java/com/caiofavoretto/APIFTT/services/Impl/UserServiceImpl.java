@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService {
                 .name(u.getName())
                 .lastName(u.getLastName())
                 .email(u.getEmail())
+                .colorHex(u.getColorHex())
                 .build()));
 
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -55,6 +56,7 @@ public class UserServiceImpl implements UserService {
                 .name(user.get().getName())
                 .lastName(user.get().getLastName())
                 .email(user.get().getEmail())
+                .colorHex(user.get().getColorHex())
                 .build(), HttpStatus.OK);
     }
 
@@ -72,6 +74,7 @@ public class UserServiceImpl implements UserService {
                         .lastName(request.getLastName())
                         .email(request.getEmail())
                         .password(request.getPassword())
+                        .colorHex(request.getColorHex())
                         .build()
         );
 
@@ -80,6 +83,7 @@ public class UserServiceImpl implements UserService {
                 .name(newUser.getName())
                 .lastName(newUser.getLastName())
                 .email(newUser.getEmail())
+                .colorHex(newUser.getColorHex())
                 .build(), HttpStatus.OK);
     }
 
@@ -100,6 +104,7 @@ public class UserServiceImpl implements UserService {
                 .name(user.getName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
+                .colorHex(user.getColorHex())
                 .build(), HttpStatus.OK);
     }
 
@@ -115,6 +120,7 @@ public class UserServiceImpl implements UserService {
         user.get().setLastName(request.getLastName());
         user.get().setEmail(request.getEmail());
         user.get().setPassword(request.getPassword());
+        user.get().setColorHex(request.getColorHex());
 
         User newUser = userRepository.save(user.get());
 
@@ -123,6 +129,7 @@ public class UserServiceImpl implements UserService {
                 .name(newUser.getName())
                 .lastName(newUser.getLastName())
                 .email(newUser.getEmail())
+                .colorHex(newUser.getColorHex())
                 .build(), HttpStatus.OK);
     }
 

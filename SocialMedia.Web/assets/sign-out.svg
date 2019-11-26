@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="23" height="24" viewBox="0 0 23 24">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-4 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #ff6f00;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        stroke-linecap: round;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Grupo_7" data-name="Grupo 7" transform="translate(-417 -238)">
+    <g id="Retângulo_16" data-name="Retângulo 16" class="cls-1" transform="translate(417 238)">
+      <rect class="cls-3" width="23" height="24" rx="4"/>
+      <rect class="cls-4" x="1" y="1" width="21" height="22" rx="3"/>
+    </g>
+    <line id="Linha_8" data-name="Linha 8" class="cls-2" x2="9" transform="translate(424.818 247.318) rotate(45)"/>
+    <line id="Linha_9" data-name="Linha 9" class="cls-2" x2="9" transform="translate(424.818 253.682) rotate(-45)"/>
+  </g>
+</svg>

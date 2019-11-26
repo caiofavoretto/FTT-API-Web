@@ -19,4 +19,7 @@ public class UserRequest {
     @NotBlank
     @Size(min = 8, max = 32)
     private String password;
+
+    @NotBlank
+    private String colorHex;
 }

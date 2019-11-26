@@ -1,0 +1,141 @@
+main .post-container {
+  width: 100%;
+}
+
+main .post-container section.post {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 16px;
+  margin-top: 8px;
+  background: #fff;
+}
+
+main .post-container section.post div.post-author {
+  display: flex;
+  align-items: center;
+}
+
+main .post-container section.post div.post-author div.profile {
+  font-size: 18px;
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+}
+
+main .post-container section.post div.post-author .post-name {
+  color: #ff6f00;
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 4px;
+  text-transform: capitalize;
+
+  margin-left: 16px;
+}
+
+main .post-container section.post div.post-author .post-title {
+  font-weight: 400;
+  text-transform: none;
+}
+
+main .post-container section.post p.message {
+  color: #757575;
+  font-size: 18px;
+  margin-top: 8px;
+  line-height: 28px;
+  width: 100%;
+}
+
+main .post-container section.post div.actions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 32px;
+  width: 100%;
+}
+
+main
+  .post-container
+  section.post
+  div.actions
+  div.btn-labeled
+  + div.btn-labeled {
+  margin-left: 64px;
+}
+
+/* Comments */
+main .comments-container {
+  width: 100%;
+  background: #fff;
+}
+
+main .comments-container section.comment {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  padding: 16px;
+
+  cursor: pointer;
+
+  position: relative;
+  margin-top: 8px;
+}
+
+main .comments-container section.comment::before {
+  content: '';
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #eee;
+  position: absolute;
+}
+
+main .comments-container section.comment div.profile {
+  font-size: 18px;
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+}
+
+main .comments-container section.comment div.comment-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  margin-left: 16px;
+}
+
+main .comments-container section.comment div.comment-content div.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+main
+  .comments-container
+  section.comment
+  div.comment-content
+  div.content
+  .comment-name {
+  color: #ff6f00;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 4px;
+  text-transform: capitalize;
+}
+
+main
+  .comments-container
+  section.comment
+  div.comment-content
+  div.content
+  p.message {
+  color: #757575;
+  font-size: 16px;
+  margin-top: 8px;
+  line-height: 24px;
+  width: 100%;
+}
