@@ -123,7 +123,7 @@ async function loadFeed(elementId) {
             <!-- Actions -->
             <div class="actions">
               <div class="btn-labeled">
-                <button>
+                <button onclick="like('${post.id}')">
                   <svg
                     class="like-icon icon"
                     xmlns="http://www.w3.org/2000/svg"
@@ -268,7 +268,7 @@ async function loadPostComments(postElementId, commentsElementId) {
         <!-- Actions -->
         <div class="actions">
           <div class="btn-labeled">
-            <button>
+            <button onclick="like('${postId}')">
               <svg
                 class="like-icon icon"
                 xmlns="http://www.w3.org/2000/svg"
@@ -467,6 +467,36 @@ async function comment(postId) {
   }
 }
 
+// LIKE
+async function like(postId) {
+  if (!e) var e = window.event;
+  e.cancelBubble = true;
+  if (e.stopPropagation) e.stopPropagation();
+
+  const userId = JSON.parse(localStorage.getItem('user')).id;
+
+  try {
+    const response = await axios.post(
+      `${apiURL}/likes/${postId}`,
+      {},
+      {
+        headers: {
+          userId,
+        },
+      },
+    );
+
+    if (window.location.pathname.includes('home')) {
+      window.location = `/home`;
+    } else {
+      window.location = `/posts/?postId=${postId}`;
+    }
+  } catch (error) {
+    alert(error.response.data.error);
+  }
+}
+
+// Log out
 function logOut() {
   localStorage.clear();
   window.location = '/login';
